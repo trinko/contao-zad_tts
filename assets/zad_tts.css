@@ -1,0 +1,251 @@
+/***  Zad Tts - A Contao CMS extension  ::  Copyright (C) 2014 by Antonello Dessi'  ::  License LGPL  ***/
+
+
+/* button links */
+.zadtts_popup,
+.zadtts_download {
+  display: block;
+  float: right;
+  margin: auto 0 auto 5px;
+  width: 24px;
+  height: 24px;
+}
+.zadtts_popup img,
+.zadtts_download img {
+  margin: 0;
+}
+
+/* pop-up box */
+.zadtts_popup-box {
+  display: none;
+  z-index: 2;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  margin-left: -210px;
+  border: 10px solid #CCCCCC;
+  border-radius: 5px 5px 5px 5px;
+  width: auto;
+  font-family: "lucida grande",tahoma,verdana,arial,sans-serif;
+  font-size: 1.25em;
+  line-height: 1.6;
+}
+.zadtts_close-box {
+  position: absolute;
+  right: -27px;
+  top: -24px;
+  width: 30px;
+  height: 30px;
+  background: url("zad_tts_close.png") no-repeat scroll 0 0 transparent;
+  cursor: pointer;
+}
+.zadtts_bg-popup {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  top:0px;
+  left:0px;
+  height: 100%;
+  width: 100%;
+  background: #000000;
+}
+
+/* player block */
+.zadtts_jplayer {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  width: 0;
+  height: 0;
+}
+
+/* container block */
+.zadtts_audio {
+  border: 1px solid #999999;
+  width: 420px;
+  background-color: #EEEEEE;
+}
+
+/* interface block */
+.zadtts_interface {
+	position: relative;
+  margin: 0;
+	width: 100%;
+	height: 80px;
+	background-color: #EEEEEE;
+}
+
+/* control list */
+.zadtts_controls {
+  margin: 0;
+  padding: 20px 20px 0 20px;
+  width: 380px;
+  overflow: hidden;
+  list-style-type: none;
+}
+.zadtts_controls li {
+	display: inline;
+	float: left;
+  margin: 0;
+  padding: 0;
+}
+.zadtts_controls li a {
+	display: block;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+/* play button */
+a.zadtts_play {
+	width: 40px;
+	height: 40px;
+	background: url("zad_tts_controls.png") 0 0 no-repeat;
+}
+a.zadtts_play:hover {
+	background: url("zad_tts_controls.png") -41px 0 no-repeat;
+}
+
+/* pause button */
+a.zadtts_pause {
+	display: none;
+	width: 40px;
+	height: 40px;
+	background: url("zad_tts_controls.png") 0 -42px no-repeat;
+}
+a.zadtts_pause:hover {
+	background: url("zad_tts_controls.png") -41px -42px no-repeat;
+}
+
+/* stop button */
+a.zadtts_stop {
+	margin-top: 6px;
+	margin-left: 10px;
+	width: 28px;
+	height: 28px;
+	background: url("zad_tts_controls.png") 0 -83px no-repeat;
+}
+a.zadtts_stop:hover {
+	background: url("zad_tts_controls.png") -29px -83px no-repeat;
+}
+
+/* mute button */
+a.zadtts_mute {
+	margin-top: 12px;
+	margin-left: 210px;
+	width: 18px;
+	height: 15px;
+	background: url("zad_tts_controls.png") 0 -170px no-repeat;
+}
+a.zadtts_mute:hover {
+	background: url("zad_tts_controls.png") -19px -170px no-repeat;
+}
+
+/* unmute button */
+a.zadtts_unmute {
+	display: none;
+	margin-top: 12px;
+	margin-left: 210px;
+	width: 18px;
+	height: 15px;
+	background: url("zad_tts_controls.png") -60px -170px no-repeat;
+}
+a.zadtts_unmute:hover {
+	background: url("zad_tts_controls.png") -79px -170px no-repeat;
+}
+
+/* max volume button */
+a.zadtts_volume-max {
+	margin-top:12px;
+	margin-left: 56px;
+	width:18px;
+	height:15px;
+	background: url("zad_tts_controls.png") 0 -186px no-repeat;
+}
+a.zadtts_volume-max:hover {
+	background: url("zad_tts_controls.png") -19px -186px no-repeat;
+}
+
+/* progress bar control */
+.zadtts_progress {
+	position: absolute;
+	top: 32px;
+	height: 15px;
+	left: 110px;
+	width: 186px;
+	overflow: hidden;
+	background-color: #ddd;
+}
+.zadtts_seek-bar {
+	width: 0px;
+	height: 100%;
+	background: url("zad_tts_controls.png") 0 -202px repeat-x;
+	cursor: pointer;
+}
+.zadtts_play-bar {
+	width: 0px;
+	height: 100%;
+	background: url("zad_tts_controls.png") 0 -218px repeat-x ;
+}
+.jp_seeking-bg { /* used inside jPlayer (the class name is hard-coded) */
+	background: url("zad_tts_seeking.gif");
+}
+
+/* volume bar control */
+.zadtts_volume-bar {
+	position: absolute;
+	width: 46px;
+	height: 5px;
+	top: 37px;
+	left: 330px;
+	overflow: hidden;
+  background: url("zad_tts_controls.png") 0 -250px repeat-x;
+	cursor: pointer;
+}
+.zadtts_volume-bar-value {
+	width: 0px;
+	height: 5px;
+	background: url("zad_tts_controls.png") 0 -256px repeat-x;
+}
+
+/* time holder block */
+.zadtts_time-holder {
+	position: absolute;
+	top: 50px;
+	left: 110px;
+	width: 186px;
+}
+
+/* current time block */
+.zadtts_current-time {
+	display: inline;
+	float: left;
+	width: 60px;
+	font-size: .64em;
+	font-style: oblique;
+}
+
+/* duration time block */
+.zadtts_duration {
+	display: inline;
+	float: right;
+	width: 60px;
+	font-size: .64em;
+	font-style: oblique;
+	text-align: right;
+}
+
+/* error message block */
+.zadtts_no-solution {
+	border: 2px solid #009be3;
+	padding: 5px;
+	background-color: #EEEEEE;
+	color: #000000;
+	font-size: .8em;
+	text-align: center;
+}
+.zadtts_no-solution-title {
+	font-size: 1em;
+	font-weight: bold;
+	text-align: center;
+}
+

@@ -1,0 +1,140 @@
+
+<div class="layout_full block<?php echo $this->class; ?>">
+
+  <h1>
+    <?php echo $this->newsHeadline; ?>
+    <?php if ($this->zad_tts_download): ?>
+    <a href="<?php echo $this->zad_tts_media_dl; ?>" class="zadtts_download" ><img src="system/modules/zad_tts/assets/download.png" width="24" height="24" alt="<?php echo $this->zad_tts_msg_download; ?>" title="<?php echo $this->zad_tts_msg_download; ?>" /></a>
+    <?php endif; ?>
+    <?php if ($this->zad_tts_player): ?>
+    <a id="zadtts_popup_<?php echo $this->id; ?>" class="zadtts_popup" href="javascript:;"><img src="system/modules/zad_tts/assets/text-to-speech.png" width="24" height="24" alt="<?php echo $this->zad_tts_msg_audiolink; ?>" title="<?php echo $this->zad_tts_msg_audiolink; ?>" /></a>
+    <?php endif; ?>
+  </h1>
+
+  <?php if ($this->hasMetaFields): ?>
+    <p class="info"><?php echo $this->date; ?> <?php echo $this->author; ?> <?php echo $this->commentCount; ?></p>
+  <?php endif; ?>
+
+  <?php if ($this->hasSubHeadline): ?>
+    <h2><?php echo $this->subHeadline; ?></h2>
+  <?php endif; ?>
+
+  <?php if ($this->text): ?>
+    <?php echo $this->text; ?>
+  <?php else: ?>
+    <div class="ce_text block">
+      <?php echo $this->teaser; ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if ($this->enclosure): ?>
+    <div class="enclosure">
+      <?php foreach ($this->enclosure as $enclosure): ?>
+        <p><img src="<?php echo $enclosure['icon']; ?>" width="18" height="18" alt="<?php echo $enclosure['mime']; ?>" class="mime_icon" /> <a href="<?php echo $enclosure['href']; ?>" title="<?php echo $enclosure['title']; ?>"><?php echo $enclosure['link']; ?> <span class="size">(<?php echo $enclosure['filesize']; ?>)</span></a></p>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+
+<?php if ($this->zad_tts_player): ?>
+<div id="zadtts_popup-box_<?php echo $this->id; ?>" class="zadtts_popup-box">
+  <div id="zadtts_close-box_<?php echo $this->id; ?>" class="zadtts_close-box" title="<?php echo $this->zad_tts_msg_closebox; ?>"></div>
+  <div id="zadtts_<?php echo $this->id; ?>" class="zadtts_jplayer"></div>
+  <div id="zadtts_container_<?php echo $this->id; ?>" class="zadtts_audio">
+    <div class="zadtts_interface">
+      <ul class="zadtts_controls" style="margin:0;">
+        <li style="margin:0;"><a href="javascript:;" class="zadtts_play" tabindex="1" title="<?php echo $this->zad_tts_msg_play; ?>"><?php echo $this->zad_tts_msg_play; ?></a></li>
+        <li style="margin:0;"><a href="javascript:;" class="zadtts_pause" tabindex="1" title="<?php echo $this->zad_tts_msg_pause; ?>"><?php echo $this->zad_tts_msg_pause; ?></a></li>
+        <li style="margin:0;"><a href="javascript:;" class="zadtts_stop" tabindex="1" title="<?php echo $this->zad_tts_msg_stop; ?>"><?php echo $this->zad_tts_msg_stop; ?></a></li>
+        <li style="margin:0;"><a href="javascript:;" class="zadtts_mute" tabindex="1" title="<?php echo $this->zad_tts_msg_mute; ?>"><?php echo $this->zad_tts_msg_mute; ?></a></li>
+        <li style="margin:0;"><a href="javascript:;" class="zadtts_unmute" tabindex="1" title="<?php echo $this->zad_tts_msg_unmute; ?>"><?php echo $this->zad_tts_msg_unmute; ?></a></li>
+        <li style="margin:0;"><a href="javascript:;" class="zadtts_volume-max" tabindex="1" title="<?php echo $this->zad_tts_msg_maxvolume; ?>"><?php echo $this->zad_tts_msg_maxvolume; ?></a></li>
+      </ul>
+      <div class="zadtts_progress">
+        <div class="zadtts_seek-bar">
+          <div class="zadtts_play-bar"></div>
+        </div>
+      </div>
+      <div class="zadtts_volume-bar">
+        <div class="zadtts_volume-bar-value"></div>
+      </div>
+      <div class="zadtts_time-holder">
+        <div class="zadtts_current-time"></div>
+        <div class="zadtts_duration"></div>
+      </div>
+    </div>
+    <div class="zadtts_no-solution">
+      <p class="zadtts_no-solution-title"><?php echo $this->zad_tts_msg_errtitle; ?></p>
+      <p><?php echo $this->zad_tts_msg_errdesc; ?></p>
+    </div>
+  </div>
+</div>
+<div id="zadtts_bg-popup_<?php echo $this->id; ?>" class="zadtts_bg-popup"></div>
+<script type="text/javascript">//<![CDATA[
+jQuery(function($) {
+  $("#zadtts_<?php echo $this->id; ?>").jPlayer({
+    ready: function(){
+      $(this).jPlayer("setMedia", {
+		    mp3: "<?php echo $this->zad_tts_media; ?>"
+      });
+    },
+    swfPath: "<?php echo $this->zad_tts_swf; ?>",
+    supplied: "mp3",
+    keyEnabled: true,
+    idPrefix: "zadtts_<?php echo $this->id; ?>",
+    cssSelectorAncestor: "#zadtts_container_<?php echo $this->id; ?>",
+    cssSelector: {
+      videoPlay: "",
+      play: ".zadtts_play",
+      pause: ".zadtts_pause",
+      stop: ".zadtts_stop",
+      seekBar: ".zadtts_seek-bar",
+      playBar: ".zadtts_play-bar",
+      mute: ".zadtts_mute",
+      unmute: ".zadtts_unmute",
+      volumeBar: ".zadtts_volume-bar",
+      volumeBarValue: ".zadtts_volume-bar-value",
+      volumeMax: ".zadtts_volume-max",
+      playbackRateBar: "",
+      playbackRateBarValue: "",
+      currentTime: ".zadtts_current-time",
+      duration: ".zadtts_duration",
+      title: "",
+      fullScreen: "",
+      restoreScreen: "",
+      repeat: "",
+      repeatOff: "",
+      gui: "",
+      noSolution: ".zadtts_no-solution"
+    }
+  });
+  $("#zadtts_popup_<?php echo $this->id; ?>").click(function() {
+	  zadttsLoadPopup();
+    return false;
+	});
+	$("#zadtts_close-box_<?php echo $this->id; ?>").click(function() {
+		zadttsDisablePopup();
+	});
+	$(this).keyup(function(event) {
+		if (event.which == 27) {
+      zadttsDisablePopup();
+		}
+	});
+  $("#zadtts_bg-popup_<?php echo $this->id; ?>").click(function() {
+	  zadttsDisablePopup();
+	});
+	function zadttsLoadPopup() {
+  	$("#zadtts_popup-box_<?php echo $this->id; ?>").fadeIn(0500);
+  	$("#zadtts_bg-popup_<?php echo $this->id; ?>").css("opacity", "0.7");
+  	$("#zadtts_bg-popup_<?php echo $this->id; ?>").fadeIn(0001);
+    $("#zadtts_<?php echo $this->id; ?>").jPlayer("play");
+	}
+	function zadttsDisablePopup() {
+    $("#zadtts_<?php echo $this->id; ?>").jPlayer("stop");
+  	$("#zadtts_popup-box_<?php echo $this->id; ?>").fadeOut("normal");
+  	$("#zadtts_bg-popup_<?php echo $this->id; ?>").fadeOut("normal");
+	}
+});
+//]]></script>
+<?php endif; ?>
+
+</div>
