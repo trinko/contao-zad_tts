@@ -25,5 +25,5 @@ $GLOBALS['TL_LANG']['zad_tts']['msg_mute'] = 'Disattiva audio';
 $GLOBALS['TL_LANG']['zad_tts']['msg_unmute'] = 'Attiva audio';
 $GLOBALS['TL_LANG']['zad_tts']['msg_maxvolume'] = 'Volume massimo';
 $GLOBALS['TL_LANG']['zad_tts']['msg_errtitle'] = 'ATTENZIONE';
-$GLOBALS['TL_LANG']['zad_tts']['msg_errdesc'] = 'Per ascoltare l\'audio è indispensabile aggiornare l\'applicazione o installare <a href="http://get.adobe.com/flashplayer/" title="Scarica il Adobe Flash Player">Adobe Flash Player</a>.';
+$GLOBALS['TL_LANG']['zad_tts']['msg_errdesc'] = 'Per ascoltare l\'audio è indispensabile aggiornare l\'applicazione o installare <a href="http://get.adobe.com/flashplayer/" title="Scarica Adobe Flash Player">Adobe Flash Player</a>.';
 

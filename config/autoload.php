@@ -5,9 +5,10 @@
  *
  * Copyright (c) 2005-2014 Leo Feyer
  *
- * @package Zad_tts
- * @link    https://contao.org
- * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @package   zad_tts
+ * @author    Antonello Dessì
+ * @license   http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ * @copyright Antonello Dessì 2014
  */
 
 
@@ -41,3 +42,4 @@ TemplateLoader::addFiles(array
 (
 	'zad_tts_news_full' => 'system/modules/zad_tts/templates',
 ));
+
