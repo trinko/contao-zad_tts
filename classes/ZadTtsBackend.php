@@ -280,7 +280,7 @@ class ZadTtsBackend extends \Backend {
       // tts api
       $url = $http_url . '&tl=' . $this->language . '&q=' . urlencode($element) . '&total=' . count($list) . '&idx=' . $num;
       // get audio file
-      $audio = file_get_contents($url, false, $url_context);
+      $audio = file_get_contents($url, false, $http_context);
       if (!$audio) {
         // fatal error
         $this->log('Unable to create audio by Google TTS API "'.$url.'"', __METHOD__, TL_ERROR);
