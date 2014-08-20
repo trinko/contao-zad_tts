@@ -283,17 +283,23 @@ class ZadTtsBackend extends \Backend {
       )
     );
     $http_context = stream_context_create($opts);
-    $http_url = 'http://translate.google.com/translate_tts?ie=UTF-8';
+    $http_url = 'http://translate.google.com/translate_tts?ie=UTF-8&tl=' . $this->language . '&total=' . count($list);
     // add list elements
     foreach ($list as $num=>$element) {
       // tts api
-      $url = $http_url . '&tl=' . $this->language . '&q=' . urlencode($element) . '&total=' . count($list) . '&idx=' . $num;
+      $url = $http_url . '&q=' . urlencode($element) . '&idx=' . $num;
       // get audio file
       $audio = file_get_contents($url, false, $http_context);
       if (!$audio) {
         // fatal error
         $this->log('Unable to create audio by Google TTS API "'.$url.'"', __METHOD__, TL_ERROR);
         return false;
+      }
+      if (!ctype_punct(substr($element, -1))) {
+        // trim pause at the end of MP3 audio file
+        //      144 bytes are used for each MP3 frame created by Google TTS
+        //      so we remove 7*144 = 1008 bytes
+        $audio = substr($audio, 0, -1008);
       }
       // save audio part
       fwrite($this->mp3_file, $audio);
