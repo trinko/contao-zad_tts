@@ -128,11 +128,11 @@ class ZadTtsBackend extends \Backend {
     if (!strlen($text)) {
       return true;
     }
-    // split text according to puntuaction:
-    //    ?/!/;   in any position
+    // split text according to punctuaction:
+    //    ?!;     in any position
     //    :       avoiding time format (i.e. 8:30)
     //    .       avoiding number format (i.e. 12.30) and acronyms (i.e. F.I.G.C.)
-    $sentences = preg_split('#([\?!;]|(?<!\d):|:(?!\d)|(?<!\w(?=\.\w))\.)#si', $text, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+    $sentences = preg_split('#([\?!;]|(?<!\d):|:(?!\d)|(?<=\d)\.(?!\d)|(?<!\d)\.(?=\d)|(?<=\s)\.|\.(?=\s))#si', $text, null, PREG_SPLIT_DELIM_CAPTURE);
     // create TTS for each sentence
     for ($idx = 0; $idx < count($sentences); $idx++) {
       $s = trim($sentences[$idx]);
@@ -192,7 +192,7 @@ class ZadTtsBackend extends \Backend {
     $text = preg_replace('#<[^>]*>#si', ' ', $text);
     // remove unuseful spaces
     $text = trim(preg_replace('#(\s|&nbsp;|\[nbsp\])+#si', ' ', $text));
-    $text = preg_replace('/ ([\.,;:!?])/', '$1', $text);
+    $text = preg_replace('/ ([\.,;:!\?])/', '$1', $text);
     // remove HTML entities
     $text = html_entity_decode($text);
     // remove unuseful text
@@ -212,9 +212,9 @@ class ZadTtsBackend extends \Backend {
 	 */
   protected function appendSentence($sentence) {
     // split sentence according to puntuaction:
-    //    (/)   in any position
+    //    ()    in any position
     //    ,     avoiding number formats (i.e. 12,30)
-    $parts = preg_split('#([\(\)]|(?<!\d),|,(?!\d))#si', $sentence, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+    $parts = preg_split('#([\(\)]|(?<!\d),|,(?!\d))#si', $sentence, null, PREG_SPLIT_DELIM_CAPTURE);
     // create TTS for each text part
     $tts = array();
     for ($idx = 0; $idx < count($parts); $idx++) {
