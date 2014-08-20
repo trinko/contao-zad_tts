@@ -43,6 +43,14 @@ class ZadTtsBackend extends \Backend {
 
 
 	/**
+	 * MP3 pause of 100 ms
+	 *
+	 * @var mixed $mp3_pause  The binary MP3 data for a 100ms pause
+	 */
+	protected $mp3_pause = null;
+
+
+	/**
 	 * Create a new audio file for the text of the news
 	 *
 	 * @param \DataContainer $dc  The data container of the table
@@ -51,6 +59,7 @@ class ZadTtsBackend extends \Backend {
     // initialize
     $this->mp3_file = null;
     $this->language = $GLOBALS['TL_LANGUAGE'];
+    $this->mp3_pause = pack('H*', 'fff348c4341b72964800c056b84e2f507c2897992e6a4a6ab6370250071752f691e79ab921dc6e712386cf6c3a4d5917f2d877fc7dfffff77fcf134ea4adef1cdffa3fd47b9eae30c038a13ab310be85aaaca70fd858d0a8497ef2cecf42409074788c8b43f926e78a75ea5aa6ba736f26a67f655d6219e153d9a18ea95a866283a15429a0e104168c43961ae4a9ea2ffff348c4491cc9b23000ca10946724d0d52120a05516095cf2475e59314167b89a5ffdd43aad5f63368a1fe2fcd994393cf58bf6edbef5d58499341e6f08cf379d013adc109495c91c5f28b5a94d00eaa14686ab0d6aaf42898cb0eedfb330137fb1afc66d49b528c7ff1b9ff4bf5666666a266a1f50341dec2c0c808f1dac153a583846223dea0ec441d6c153a0b2dcfff348c4581cf18e0c00c8c69459f2d2c0c82b3d9d06a74ed40d5631f2a0a82b89435e9eb0d2e54ead20a3e890932232501332404fcf73e1128a3e5200b808038d943a70ea8ba8bce17fffea5195d5d5d2c9a5654792cb1d2c97ffeab2cb2cb594103040c13161616161767ffff15151616161617151515156ffac54545451bffc54585858585c54545454585858585dfff348c46719b16104007a46944c414d45332e39382e3255555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555555');
     // get news identifier
     $news_id = intval($_GET['Zid']);
     // get all news data
@@ -302,7 +311,7 @@ class ZadTtsBackend extends \Backend {
 	protected function appendPause($ms) {
     for ($cnt = round($ms / 100); $cnt > 0; $cnt--) {
       // save audio pause
-      fwrite($this->mp3_file, file_get_contents(TL_ROOT . '/system/modules/zad_tts/assets/pause_0100ms.mp3'));
+      fwrite($this->mp3_file, $this->mp3_pause);
     }
     return true;
   }
